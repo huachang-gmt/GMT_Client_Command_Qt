@@ -202,7 +202,8 @@ MainWindow::MainWindow(QWidget *parent)
         "SVO", "SVF", "CAL", "DSC", "VLS",
         "MOV", "MRV", "MSV", "MSR", "MPV",
         "MPR", "MOV?", "POS?", "PMS?", "SPI",
-        "SPI?", "FRS?", "DFRS", "FLM", "BKN?"
+        "SPI?", "FRS?", "DFRS", "FLM", "BKN?",
+        "SSI", "SSP", "SLI"
     };
 
     for (int i = 0; i < available_commands.size(); ++i)
