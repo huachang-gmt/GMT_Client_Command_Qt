@@ -12,6 +12,7 @@
 #include <QStringList>
 #include <QAbstractSocket>
 #include <QIcon>
+#include <QScrollBar>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -170,6 +171,7 @@ MainWindow::MainWindow(QWidget *parent)
     response_label->setMinimumHeight(80);
     response_label->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     response_label->setLineWrapMode(QTextEdit::WidgetWidth);
+    response_label->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
     response_clear_button = new QPushButton("Clear");
     response_clear_button->setFixedWidth(80);
@@ -367,17 +369,38 @@ void MainWindow::onSocketReadyRead()
                 response_text.mid(
                     QString("[ERROR]").length()).trimmed();
 
-            response_label->append(response_text);
-
             response_label->setStyleSheet(
                 "QTextEdit { color: red; }");
         }
         else
         {
-            response_label->append(response_text);
-
             response_label->setStyleSheet(
                 "QTextEdit { color: blue; }");
+        }
+
+        QScrollBar *scroll_bar =
+            response_label->verticalScrollBar();
+
+        const bool was_at_bottom =
+            scroll_bar->value() >=
+            scroll_bar->maximum() - 1;
+
+        const int previous_scroll_position =
+            scroll_bar->value();
+
+        response_label->append(response_text);
+
+        if (was_at_bottom)
+        {
+            // 原本在底部：跟隨最新的 Response。
+            scroll_bar->setValue(
+                scroll_bar->maximum());
+        }
+        else
+        {
+            // 原本正在查看舊資料：保留原本的閱讀位置。
+            scroll_bar->setValue(
+                previous_scroll_position);
         }
     }
 }
