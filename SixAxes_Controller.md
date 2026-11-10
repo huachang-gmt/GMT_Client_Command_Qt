@@ -46476,9 +46476,48 @@ C. Slave Servo Drive
 
 你回答後，我會批改。若理解沒有問題，我們就正式結束機械運動基礎整合課程，進入 EtherCAT Master Controller 與 STM32H755 的深入學習。
 
+🎉 **四題全部正確！4 / 4 PASS！**
 
+逐題確認：
 
+| 題目 | 你的答案 | 結果 | 說明 |
+|---|---|---|---|
+| 第 1 題 | B. 滾珠螺桿 | ✅ PASS | 適合較長行程及較大負載的直線運動 |
+| 第 2 題 | B. 限制移動方向並支撐移動台面 | ✅ PASS | 這是線性導軌的主要功能 |
+| 第 3 題 | C. 4 軸 | ✅ PASS | X、Y、Z、θ 分別負責不同運動 |
+| 第 4 題 | C. Slave Servo Drive | ✅ PASS | 主要負責馬達的位置、速度及電流控制 |
 
+## 課程進度確認
+
+至此，我認為我們可以正式完成：
+
+**機械運動、傳動元件、驅動方式及設備運動架構的基礎整合課程。**
+
+接下來不需要再花時間逐一介紹 GMT 的產品型號，也不必重複學習已經理解的機械元件。
+
+## 下一階段：STM32H755 + EtherCAT
+
+我們正式進入下一個學習階段：
+
+**STM32H755 如何透過 EtherCAT Master Controller 控制六個 Slave 電動滑台。**
+
+接下來的學習順序：
+
+1. EtherCAT 整體架構：Master、Slave、ESC。
+2. ECM-XF Master Controller 的硬體架構與工作原理。
+3. STM32H755 CM4 如何透過 SPI1 與 ECM-XF 溝通。
+4. EtherCAT 初始化與 Slave 狀態轉換。
+5. PDO、SDO 資料交換。
+6. CiA402 Servo Drive 控制。
+7. Servo Enable、Homing、Jog、Absolute Move。
+8. CSP 六軸同步位置控制。
+9. 最後 Trace 同事的 STM32H755 實際程式碼。
+
+**教學原則維持不變：** 一次一個小單元、先講原理，再看實際架構，搭配小測驗；進入程式碼時先唯讀檢查，不直接修改正式專案。
+
+這次的四題全部 PASS，可以正式進入 EtherCAT 課程了！
+
+---
 
 
 
